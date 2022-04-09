@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import NavBar from './components/NavBar';
+import PostsPages from './pages/PostsPages';
+import Home from './pages/Home';
 
 function App() {
+  // menyimpan data yang datanya dinamis itu sebutan state
+  // cara membuat state di function component itu menggunakan hooks useState
+  
+  const [ menu, setMenu ] = useState('home');
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <NavBar setMenu={setMenu}/>
+
+      { menu === 'home' ? <Home /> : (menu === 'posts') ? <PostsPages /> : <Home /> }
+
+      {/* <InputPost setPosts={setPosts}/>
+      <h1>Hello World</h1>
+      <PostsPages posts={posts} setPosts={setPosts}/> */}
+
+
     </div>
   );
 }
